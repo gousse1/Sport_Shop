@@ -1,0 +1,91 @@
+﻿<Window x:Class="Sport_Shop.AddEditPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sport_Shop"
+        mc:Ignorable="d"
+                    Title="AddEditPage" Height="556" Width="700" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="141.002857142857"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="164*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="344"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="name" VerticalAlignment="Center" Margin="122,0,0,0" FontSize="16" Height="21" Width="74" FontFamily="Dubai Medium"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" Text="description" VerticalAlignment="Center" FontSize="16" Height="21" Width="100" FontFamily="Dubai Medium"/>
+        <TextBox x:Name="window1" Text="{Binding name}" Grid.Column="1" HorizontalAlignment="Left" Margin="74,0,0,0" Grid.Row="1" MaxLength="60" TextWrapping="Wrap" VerticalAlignment="Center" Width="220" Height="18"/>
+        <TextBox x:Name="window2" Text="{Binding category}" Grid.Column="1" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="2" MaxLength="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="17"/>
+        <TextBox x:Name="window4" Text="{Binding price}" Grid.Column="1" HorizontalAlignment="Left" Margin="74,15,0,0" Grid.Row="4" MaxLength="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="18"/>
+        <Border BorderBrush="White" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="100" Grid.Row="5" VerticalAlignment="Center" Width="700" Background="Black"/>
+        <Button Style="{DynamicResource ButtonStyle1}" Content="Сохранить" HorizontalAlignment="Left" Grid.Row="5"  x:Name="BtnSave" Width="192" Margin="100,32,0,31" BorderBrush="Black" Foreground="Black" FontSize="18" FontFamily="Dubai Medium" Background="White" Click="BtnSave_Click"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,6,0,0" Grid.Row="2" TextWrapping="Wrap" Text="category" VerticalAlignment="Top" FontSize="16" Height="21" Width="100" FontFamily="Dubai Medium"/>
+        <TextBlock x:Name="___Без_имени_" HorizontalAlignment="Left" Margin="122,13,0,0" Grid.Row="4" TextWrapping="Wrap" Text="price" VerticalAlignment="Top" FontSize="16" Height="21" Width="84" FontFamily="Dubai Medium"/>
+        <TextBox x:Name="window3" Text="{Binding description}" Grid.Column="1" HorizontalAlignment="Left" Margin="74,0,0,0" Grid.Row="3" MaxLength="200" TextWrapping="Wrap" VerticalAlignment="Center" Width="220" Height="18"/>
+        <Button Style="{DynamicResource ButtonStyle1}" Content="Назад" HorizontalAlignment="Center" Grid.Row="5"  x:Name="BtnCancel2" Width="192" Margin="0,32,0,31" BorderBrush="Black" Foreground="Black" FontSize="18" FontFamily="Dubai Medium" Background="White" Grid.Column="1" Click="BtnCancel2_Click"/>
+    </Grid>
+</Window>
